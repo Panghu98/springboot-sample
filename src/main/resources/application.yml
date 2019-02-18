@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db_library?useSSL=false&characterEncoding=utf-8
+    username: root
+    password: "000411"
+  thymeleaf:
+    cache: false
+  mail:
+    host: smtp.qq.com
+    username: 792559738@qq.com
+    password: bcpczokgxsmxbdjh
+    default-encoding: utf-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+              enable: true
+              required: true
+
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 3000ms
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 100
+
+
+#注意，这个节点不是在spring的节点下面的
+mybatis:
+  #对应mapper映射xml文件所在的路径
+  mapper-locations: classpath:mapper/*.xml
+  #对应实体类的路径
+  type-aliases-package: com.example.demo.object
+
+jwt:
+  secret: mysecret
