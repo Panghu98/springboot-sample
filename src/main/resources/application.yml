@@ -38,3 +38,9 @@ mybatis:
 
 jwt:
   secret: mysecret
+  tokenHeader: Authorization
+pagehelper:
+  reasonable: true
+  helperDialect: mysql
+  params: count
+  supportMethodsArguments: true

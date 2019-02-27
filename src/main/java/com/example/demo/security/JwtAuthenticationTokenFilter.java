@@ -4,6 +4,7 @@ package com.example.demo.security;
 import com.example.demo.utils.JwtTokenUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,6 +32,9 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+    @Value("${jwt.tokenHeader}")
+    private String tokenHeader;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
         /*
@@ -51,7 +55,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         /*
          * 定义的tokenHeader的名称
          */
-        String tokenHeader = "Authorization";
         String authToken = request.getHeader(tokenHeader);
         String username = jwtTokenUtil.getUsernameFromToken(authToken);
 
