@@ -79,7 +79,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/test*",
                         "/getCheckCode"
                 ).permitAll()
-                .antMatchers(HttpMethod.POST, "/login").permitAll()
+                .antMatchers(HttpMethod.POST, "/login", "/getGoodsTypeList").permitAll()
                 .anyRequest().authenticated();
 
         httpSecurity

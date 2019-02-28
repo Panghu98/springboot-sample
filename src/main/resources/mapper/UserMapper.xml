@@ -10,7 +10,7 @@
     <sql id="User_List">
         username,password,role,id
     </sql>
-    <select id="selectByUsername" parameterType="string" resultType="com.example.demo.object.User">
+    <select id="selectByUsername" parameterType="int" resultType="com.example.demo.object.User">
         select
         <include refid="User_List"/>
         from Sys_User
