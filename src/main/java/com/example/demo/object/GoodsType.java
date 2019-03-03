@@ -2,6 +2,7 @@ package com.example.demo.object;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -12,7 +13,9 @@ import java.util.Date;
  * @date 19-2-27 下午9:23
  */
 @Data
-public class GoodsType {
+public class GoodsType implements Serializable {
+
+    private static final long serialVersionUID = -3099818122089286217L;
 
     private int id;
 

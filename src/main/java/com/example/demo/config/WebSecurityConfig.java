@@ -68,7 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                         HttpMethod.GET,
-                        "/",
+                        "/*",
                         "/*.html",
                         "/favicon.ico",
                         "/**/*.html",
@@ -76,10 +76,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.js",
                         "/swagger**",
                         "/autoconfig",
-                        "/test*",
+                        "/test/**",
                         "/getCheckCode"
                 ).permitAll()
-                .antMatchers(HttpMethod.POST, "/login", "/getGoodsTypeList").permitAll()
+                .antMatchers(HttpMethod.POST, "/test/**","/login", "/getGoodsTypeList").permitAll()
                 .anyRequest().authenticated();
 
         httpSecurity

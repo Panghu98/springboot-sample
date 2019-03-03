@@ -14,6 +14,8 @@ import java.io.Serializable;
 @Data
 public class User implements Serializable {
 
+    private static final long serialVersionUID = -8577252502582508047L;
+
     private Integer id;
 
     private String username;
@@ -21,4 +23,6 @@ public class User implements Serializable {
     private String password;
 
     private Integer role;
+
+    private String redisKey;
 }
