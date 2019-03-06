@@ -77,9 +77,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/swagger**",
                         "/autoconfig",
                         "/test/**",
-                        "/getCheckCode"
+                        "/getCheckCode",
+                        "/redis/**"
                 ).permitAll()
-                .antMatchers(HttpMethod.POST, "/test/**","/login", "/getGoodsTypeList").permitAll()
+                .antMatchers(HttpMethod.POST, "/test/**","/login", "/getGoodsTypeList","/redis/**").permitAll()
                 .anyRequest().authenticated();
 
         httpSecurity

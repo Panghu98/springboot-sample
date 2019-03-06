@@ -24,6 +24,7 @@ public class PageServiceImpl implements PageService {
     @Autowired
     private PageMapper pageMapper;
 
+    @Override
     public List<GoodsType> getList(int pageNum, int pageSize) throws Exception {
         //使用分页插件,核心代码就这一行
         PageHelper.startPage(pageNum, pageSize);

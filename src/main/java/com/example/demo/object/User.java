@@ -16,6 +16,10 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = -8577252502582508047L;
 
+    private String name;
+
+    private Integer age;
+
     private Integer id;
 
     private String username;
@@ -25,4 +29,13 @@ public class User implements Serializable {
     private Integer role;
 
     private String redisKey;
+
+    public User(Integer id, String username, Integer role) {
+        this.id = id;
+        this.username = username;
+        this.role = role;
+    }
+
+    public User() {
+    }
 }

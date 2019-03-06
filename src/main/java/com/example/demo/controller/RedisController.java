@@ -1,11 +1,15 @@
 package com.example.demo.controller;
 
 import com.example.demo.object.User;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author panghu
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * @Description: TODO
  * @date 19-3-3 下午3:32
  */
+@Slf4j
 @RestController
 @RequestMapping("/test")
 public class RedisController {
@@ -40,9 +45,9 @@ public class RedisController {
     }
 
     @GetMapping("/getString")
-    public String findString() {
-        String s = stringRedisTemplate.opsForValue().get(testString);
-        return s;
+    public void findString() {
+        List<Object> list=redisTemplate.opsForHash().values("test1");
+        log.info(list.toString());
     }
 
     @GetMapping("/delete")
