@@ -1,5 +1,6 @@
-package com.example.demo.config;
+package com.example.demo.redis;
 
+import com.example.demo.redis.RedisTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 
@@ -93,7 +94,7 @@ public class RedisUtil {
      * @return 值
      */
     public Object get(String key, int indexdb) {
-        redisTemplate.indexdb.set(indexdb);
+        RedisTemplate.indexdb.set(indexdb);
         return key == null ? null : redisTemplate.opsForValue().get(key);
     }
 
@@ -106,7 +107,7 @@ public class RedisUtil {
      */
     public boolean set(String key, Object value, int indexdb) {
         try {
-            redisTemplate.indexdb.set(indexdb);
+            RedisTemplate.indexdb.set(indexdb);
             redisTemplate.opsForValue().set(key, value);
             return true;
         } catch (Exception e) {
@@ -370,7 +371,9 @@ public class RedisUtil {
     public long sSetAndTime(String key, long time, Object... values) {
         try {
             Long count = redisTemplate.opsForSet().add(key, values);
-            if (time > 0) expire(key, time);
+            if (time > 0){
+                expire(key, time);
+            }
             return count;
         } catch (Exception e) {
             e.printStackTrace();

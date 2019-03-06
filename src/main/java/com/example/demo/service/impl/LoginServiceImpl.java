@@ -1,7 +1,7 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.mapper.UserMapper;
-import com.example.demo.utils.JwtTokenUtil;
+import com.example.demo.security.JwtTokenUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;

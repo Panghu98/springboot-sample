@@ -1,6 +1,9 @@
 package com.example.demo.config;
 
 import com.alibaba.fastjson.parser.ParserConfig;
+import com.example.demo.redis.FastJson2JsonRedisSerializer;
+import com.example.demo.redis.RedisTemplate;
+import com.example.demo.redis.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
@@ -8,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.RedisPassword;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
@@ -37,6 +41,9 @@ public class RedisConfig extends CachingConfigurerSupport {
 
     @Value("${redis.maxIdle}")
     private Integer maxIdle;
+
+    @Value("${redis.password}")
+    private String password;
 
     @Value("${redis.timeout}")
     private Integer timeout;
@@ -68,7 +75,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration ();
         redisStandaloneConfiguration.setHostName(hostName);
         redisStandaloneConfiguration.setPort(port);
-//        redisStandaloneConfiguration.setPassword(RedisPassword.of(password));
+        redisStandaloneConfiguration.setPassword(RedisPassword.of(password));
         JedisClientConfiguration.JedisClientConfigurationBuilder jedisClientConfiguration = JedisClientConfiguration.builder();
         jedisClientConfiguration.connectTimeout(Duration.ofMillis(timeout));
         JedisConnectionFactory factory = new JedisConnectionFactory(redisStandaloneConfiguration,

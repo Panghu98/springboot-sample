@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package com.example.demo.security;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;
