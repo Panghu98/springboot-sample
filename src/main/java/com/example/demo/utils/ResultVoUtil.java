@@ -23,6 +23,7 @@ public class ResultVoUtil implements Serializable {
 
     /**
      * 成功返回 不携带内容
+     *
      * @return
      */
     public static ResultVO success() {
@@ -31,6 +32,7 @@ public class ResultVoUtil implements Serializable {
 
     /**
      * 错误返回 并携带内容
+     *
      * @param loginEnum
      * @return
      */
@@ -40,7 +42,6 @@ public class ResultVoUtil implements Serializable {
         resultVO.setMsg(loginEnum.getMessage());
         return resultVO;
     }
-
 
 
 }

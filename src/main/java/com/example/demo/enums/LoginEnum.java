@@ -11,13 +11,13 @@ import lombok.Getter;
 public enum LoginEnum {
 
     /***/
-    USERNAME_EMPTY(1,"用户名为空"),
-    USER_NOT_EXIT(2,"用户名不存在"),
-    USER_LOGIN_ERROR(3,"密码错误"),
+    USERNAME_EMPTY(1, "用户名为空"),
+    USER_NOT_EXIT(2, "用户名不存在"),
+    USER_LOGIN_ERROR(3, "密码错误"),
     TOKEN_NON_ERROR(4, "token信息必传"),
     TOKEN_ERROR(5, "token验证失败"),
-    HAVE_NO_PERMISSIONS(101,"权限不足"),
-    AUTHENTICATION_ERROR(201,"用户认证失败，请重新登录");
+    HAVE_NO_PERMISSIONS(101, "权限不足"),
+    AUTHENTICATION_ERROR(201, "用户认证失败，请重新登录");
 
     Integer code;
     String message;

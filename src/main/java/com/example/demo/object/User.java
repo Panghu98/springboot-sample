@@ -35,6 +35,7 @@ public class User implements Serializable {
     /**
      * 是否被序列化
      * 下述为是否被序反列化
+     *
      * @JSONField(deserialize = 布尔类型)
      */
     @JSONField(serialize = false)

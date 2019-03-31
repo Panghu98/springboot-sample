@@ -19,7 +19,7 @@
         <property name="endingDelimiter" value="`"/>
 
         <!-- 生成的POJO实现java.io.Serializable接口 -->
-        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
 
         <!--注释-->
         <commentGenerator>
@@ -38,10 +38,11 @@
         <!-- 生成POJO对象，并将类放到相关的包下 -->
         <javaModelGenerator targetPackage="com.example.demo.object" targetProject="src/main/java"></javaModelGenerator>
         <!-- 生成mapper xml文件，并放到resources下的mapper文件夹下 -->
-        <sqlMapGenerator targetPackage="mapper"  targetProject="src/main/resources"></sqlMapGenerator>
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"></sqlMapGenerator>
 
         <!-- 生成mapper xml对应dao接口-->
-        <javaClientGenerator targetPackage="com.example.demo.mapper" targetProject="src/main/java" type="XMLMAPPER"></javaClientGenerator>
+        <javaClientGenerator targetPackage="com.example.demo.mapper" targetProject="src/main/java"
+                             type="XMLMAPPER"></javaClientGenerator>
 
         <!-- table标签可以有多个，至少一个，tableName指定表名，可以使用_和%通配符，我这里的配置表明匹配所有的表 -->
         <!--<table tableName="%">-->

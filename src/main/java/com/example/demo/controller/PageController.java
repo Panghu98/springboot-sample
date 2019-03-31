@@ -4,6 +4,7 @@ import com.example.demo.object.GoodsType;
 import com.example.demo.service.PageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -21,10 +22,10 @@ public class PageController {
     @Autowired
     private PageService pageService;
 
-    @PostMapping
-    public List<GoodsType> getGoodsTypeList(int pageNum, int pageSize) throws Exception{
+    @PostMapping("/getList")
+    public List<GoodsType> getGoodsTypeList(int pageNum, int pageSize) throws Exception {
         // 调用业务逻辑,返回数据
-        return pageService.getList(pageNum,pageSize);
+        return pageService.getList(pageNum, pageSize);
     }
 
 }

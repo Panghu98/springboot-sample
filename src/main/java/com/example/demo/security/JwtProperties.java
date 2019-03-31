@@ -19,7 +19,7 @@ public class JwtProperties {
     /**
      * token过期时间
      */
-    private String expiration ;
+    private String expiration;
 
     private String tokenStart;
 

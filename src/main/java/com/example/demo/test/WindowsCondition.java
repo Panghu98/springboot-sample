@@ -32,9 +32,9 @@ public class WindowsCondition implements Condition {
         //获得当前系统名
         String property = environment.getProperty("os.name");
         //包含Windows则说明是windows系统，返回true
-        if (property.contains("Windows")){
+        if (property.contains("Windows")) {
             return true;
         }
         return false;
-        }
+    }
 }

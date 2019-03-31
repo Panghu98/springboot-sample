@@ -2,6 +2,7 @@ package com.example.demo.mapper;
 
 import com.example.demo.object.GoodsType;
 import com.example.demo.object.Page;
+
 import java.util.List;
 
 public interface PageMapper {

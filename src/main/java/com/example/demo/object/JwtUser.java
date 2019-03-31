@@ -12,6 +12,7 @@ import java.util.Collection;
 
 /**
  * 默认密码为空字符串  , 并且设置为启用,没有锁定 . 没有过期.
+ *
  * @author panghu
  */
 @Component
@@ -23,7 +24,7 @@ public class JwtUser implements UserDetails {
     private String password;
 
 
-    public JwtUser(String username,String password) {
+    public JwtUser(String username, String password) {
         this.username = username;
         this.password = new BCryptPasswordEncoder().encode(password);
 
@@ -36,6 +37,7 @@ public class JwtUser implements UserDetails {
 
     /**
      * TODO,可以不进行权限的配置
+     *
      * @return
      */
     @Override
@@ -55,6 +57,7 @@ public class JwtUser implements UserDetails {
 
     /**
      * 默认有效账户
+     *
      * @return
      */
     @Override
@@ -71,7 +74,7 @@ public class JwtUser implements UserDetails {
     }
 
     /**
-     *     默认凭证有效
+     * 默认凭证有效
      */
     @Override
     public boolean isCredentialsNonExpired() {
@@ -80,7 +83,7 @@ public class JwtUser implements UserDetails {
 
     /**
      * 默认账户可用
-     * */
+     */
     @Override
     public boolean isEnabled() {
         return true;

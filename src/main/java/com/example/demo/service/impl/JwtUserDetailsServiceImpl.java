@@ -24,7 +24,7 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
         } else {
             String password = userMapper.selectByUsername(username).getPassword();
-            return new JwtUser(username,password);
+            return new JwtUser(username, password);
         }
 
     }

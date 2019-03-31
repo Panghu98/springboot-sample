@@ -32,8 +32,8 @@ class RedisTestControllerTest {
             user.setName("小张");
             user.setAge(65);
             user.setId(45647854);
-            redisUtil.set("user",user, 2);
-            User res = (User)redisUtil.get("user",2);
+            redisUtil.set("user", user, 2);
+            User res = (User) redisUtil.get("user", 2);
             return redisModelMap.getModelMap(StateParameter.SUCCESS, res, "操作成功");
         } catch (Exception e) {
             e.printStackTrace();

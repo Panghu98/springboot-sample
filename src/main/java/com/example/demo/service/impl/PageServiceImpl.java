@@ -18,7 +18,7 @@ import java.util.List;
  * @date 19-2-27 下午9:35
  */
 @Service
-@Transactional(rollbackFor = { RuntimeException.class, Exception.class })
+@Transactional(rollbackFor = {RuntimeException.class, Exception.class})
 public class PageServiceImpl implements PageService {
 
     @Autowired

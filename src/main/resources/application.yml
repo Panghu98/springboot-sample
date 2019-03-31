@@ -1,23 +1,37 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/db_library?useSSL=false&characterEncoding=utf-8
     username: root
     password: "000411"
-  thymeleaf:
-    cache: false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  #  thymeleaf:
+  #    cache: false
   mail:
     host: smtp.qq.com
     username: 792559738@qq.com
-    password: bcpczokgxsmxbdjh
+    password: fmafqfobckggbcia
     default-encoding: utf-8
     properties:
       mail:
         smtp:
           auth: true
           starttls:
-              enable: true
-              required: true
+            enable: true
+            required: true
+
+  #关于FreeMark的相关配置
+  #模板引擎
+  freemarker:
+    request-context-attribute: request
+    ##重要
+    #关闭缓存
+    cache: false
+    #模板加载的位置
+    template-loader-path: classpath:/templates/
+    #后缀
+    suffix: .ftl
+    charset: UTF-8
+    content-type: text/html
 #  redis:
 #    host: 127.0.0.1
 #    port: 6379
@@ -61,4 +75,6 @@ pagehelper:
   helperDialect: mysql
   params: count=countSql
   support-methods-arguments: true
-
+swagger:
+  title: demo
+  version: 1.0

@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @Transactional(rollbackFor = Exception.class)
 @RequestMapping("/redis")
-public class RedisTestController{
+public class RedisTestController {
 
     @Autowired
     RedisUtil redisUtil;
@@ -36,14 +36,14 @@ public class RedisTestController{
      * @return: org.springframework.ui.ModelMap
      * @Description: 测试redis存储&读取
      */
-    @RequestMapping(value="/test")
+    @RequestMapping(value = "/test")
     @ResponseBody
-    public ModelMap test(){
+    public ModelMap test() {
         RedisModelMap redisModelMap = new RedisModelMap();
         try {
-            redisUtil.set("redisTemplate","这是一条测试数据", 2);
+            redisUtil.set("redisTemplate", "这是一条测试数据", 2);
             String value = redisUtil.get("redisTemplate", 2).toString();
-            log.info("redisValue="+value);
+            log.info("redisValue=" + value);
             log.info("读取redis成功");
             return redisModelMap.getModelMap(StateParameter.SUCCESS, value, "操作成功");
             //TODO  添加相关的数据库操作
@@ -53,18 +53,18 @@ public class RedisTestController{
         }
     }
 
-    @RequestMapping(value="/setUser")
+    @RequestMapping(value = "/setUser")
     @ResponseBody
-    public ModelMap setUser(){
+    public ModelMap setUser() {
         RedisModelMap redisModelMap = new RedisModelMap();
         try {
             User user = new User();
             user.setName("隔壁老王");
             user.setAge(28);
             user.setId(6666);
-            redisUtil.set("user",user, 2);
-            User res = (User)redisUtil.get("user",2);
-            log.info("res="+ JSON.toJSONString(res));
+            redisUtil.set("user", user, 2);
+            User res = (User) redisUtil.get("user", 2);
+            log.info("res=" + JSON.toJSONString(res));
             log.info("读取redis成功");
             return redisModelMap.getModelMap(StateParameter.SUCCESS, res, "操作成功");
         } catch (Exception e) {

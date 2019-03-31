@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
         String anonymousUser = "anonymousUser";
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String name = authentication.getName();
-        if (!anonymousUser.equals(name)){
+        if (!anonymousUser.equals(name)) {
             return userMapper.selectByUsername(name);
         }
         return null;

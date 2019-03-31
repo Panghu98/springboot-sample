@@ -40,14 +40,14 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
          * 跨域问题的设置
          */
         String option = "OPTIONS";
-        if (option.equals(request.getMethod())){
+        if (option.equals(request.getMethod())) {
             log.info("浏览器的预请求的处理..");
             response.setHeader("Access-Control-Allow-Origin", "*");
             response.setHeader("Access-Control-Allow-Methods", "POST,GET,PUT,OPTIONS,DELETE");
             response.setHeader("Access-Control-Max-Age", "3600");
             response.setHeader("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept,Authorization,token,Cookie");
             return;
-        }else {
+        } else {
             String requestURI = request.getRequestURI();
             log.info("requestURI:{}", requestURI);
         }
@@ -65,7 +65,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             log.info("token中的username不为空,Context中的authentication为空时,进行token的验证..");
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
-            log.info("加载userDetails:{}",userDetails.getUsername());
+            log.info("加载userDetails:{}", userDetails.getUsername());
             if (jwtTokenUtil.validateToken(authToken, userDetails)) {
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

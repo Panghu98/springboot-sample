@@ -16,19 +16,21 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-        @Bean
-        public UserService userService(){
-            return new UserServiceImpl();
-        }
-
-        @Autowired
-        private AuthorityInterceptor authorityInterceptor;
-
-        /**在这个方法当中配置拦截器需要拦截的页面*/
-        @Override
-        public void addInterceptors(InterceptorRegistry registry) {
-            registry.addInterceptor(authorityInterceptor).addPathPatterns("/**")
-                                                         .excludePathPatterns("/login","/autoconfig","/getCheckCode","/getGoodsTypeList");
-        }
-
+    @Bean
+    public UserService userService() {
+        return new UserServiceImpl();
     }
+
+    @Autowired
+    private AuthorityInterceptor authorityInterceptor;
+
+    /**
+     * 在这个方法当中配置拦截器需要拦截的页面
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(authorityInterceptor).addPathPatterns("/**")
+                .excludePathPatterns("/login", "/autoconfig", "/getCheckCode", "/getGoodsTypeList");
+    }
+
+}

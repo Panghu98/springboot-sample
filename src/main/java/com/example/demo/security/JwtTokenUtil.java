@@ -31,7 +31,7 @@ public class JwtTokenUtil implements Serializable {
     private static final String AUDIENCE_TABLET = "tablet";
 
     @Value("${jwt.secret}")
-    private String secret ;
+    private String secret;
 
     public String getUsernameFromToken(String token) {
         String username;
@@ -147,7 +147,7 @@ public class JwtTokenUtil implements Serializable {
         JwtUser user = (JwtUser) userDetails;
         final String username = getUsernameFromToken(token);
         final Date created = getCreatedDateFromToken(token);
-        return (username.equals(user.getUsername())&& !isTokenExpired(token));
+        return (username.equals(user.getUsername()) && !isTokenExpired(token));
     }
 
 }

@@ -11,13 +11,13 @@
         username,password,role,id
     </sql>
     <update id="update" parameterType="com.example.demo.object.User">
-            update Sys_User
+        update Sys_User
         <trim prefix="set">
             <if test="user!=null">
-              username=#{user.username}
-              id=#{user.id}
-              password=#{user.password}
-              role=#{user.role}
+                username=#{user.username}
+                id=#{user.id}
+                password=#{user.password}
+                role=#{user.role}
             </if>
         </trim>
     </update>
@@ -25,7 +25,7 @@
         delete
         from Sys_User
         <where>
-        id = #{id,jdbcType=INTEGER}
+            id = #{id,jdbcType=INTEGER}
         </where>
     </delete>
     <select id="selectByUsername" parameterType="int" resultType="com.example.demo.object.User">

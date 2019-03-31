@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author dgh
  * @date 19-1-19 下午7:54
  */
-@Component
+@Service
 @Slf4j
 public class AuthorityInterceptor implements HandlerInterceptor {
 
@@ -35,23 +36,25 @@ public class AuthorityInterceptor implements HandlerInterceptor {
         String json = JSON.toJSONString(ResultVoUtil.error(LoginEnum.AUTHENTICATION_ERROR));
         User user = userService.getCurrentUser();
         log.info(String.valueOf(user));
-        if (user == null){
+        if (user == null) {
+            log.info("未登录");
             return true;
         }
         log.info("Security 执行权限验证--------");
-        if(handler instanceof HandlerMethod){
-            HandlerMethod handlerMethod = (HandlerMethod)handler;
+        if (handler instanceof HandlerMethod) {
+            System.out.println("--------------------------");
+            HandlerMethod handlerMethod = (HandlerMethod) handler;
             RoleRequired roleRequired = handlerMethod.getMethodAnnotation(RoleRequired.class);
-            if (roleRequired == null){
+            if (roleRequired == null) {
+                log.info("不需要角色权限验证");
                 return true;
             }
             Integer requireValue = roleRequired.value().getValue();
             Integer userValue = user.getRole();
-            log.info("requireValue:{},userValue:{}",requireValue,userValue);
-            if (userValue >= requireValue){
+            log.info("requireValue:{},userValue:{}", requireValue, userValue);
+            if (userValue >= requireValue) {
                 return true;
-            }
-            else {
+            } else {
                 json = JSON.toJSONString(ResultVoUtil.error(LoginEnum.HAVE_NO_PERMISSIONS));
                 log.error("............权限不足...........");
             }

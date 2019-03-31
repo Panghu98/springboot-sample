@@ -8,7 +8,9 @@ import com.example.demo.object.User;
  * @date 19-1-18 下午5:21
  */
 public interface UserMapper {
-    /**通过用户名查询用户信息
+    /**
+     * 通过用户名查询用户信息
+     *
      * @param username
      * @return
      */

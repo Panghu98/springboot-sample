@@ -31,11 +31,13 @@ public class MailServiceImpl implements MailService {
     public MailServiceImpl(JavaMailSender javaMailSender) {
         this.mailSender = javaMailSender;
     }
+
     @Value("${spring.mail.username}")
     private String from;
 
     /**
      * 发送普通邮件
+     *
      * @param to
      * @param title
      * @param content
@@ -53,6 +55,7 @@ public class MailServiceImpl implements MailService {
 
     /**
      * 发送带有附件的邮件
+     *
      * @param to
      * @param title
      * @param content
@@ -62,13 +65,13 @@ public class MailServiceImpl implements MailService {
     public void sendAttachmentsMail(String to, String title, String content, List<File> fileList) {
         MimeMessage message = mailSender.createMimeMessage();
         try {
-            MimeMessageHelper helper = new MimeMessageHelper(message,true);
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
             helper.setFrom(from);
             helper.setTo(to);
             helper.setSubject(title);
             helper.setText(content);
             String fileName = null;
-            for (File file:fileList) {
+            for (File file : fileList) {
                 fileName = MimeUtility.encodeText(file.getName(), "GB2312", "B");
                 helper.addAttachment(fileName, file);
             }

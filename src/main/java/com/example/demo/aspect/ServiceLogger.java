@@ -20,14 +20,14 @@ import org.springframework.stereotype.Component;
 public class ServiceLogger {
 
     @Pointcut("execution(public * com.example.demo.controller.*.*(..))")
-    public void service(){
+    public void service() {
 
     }
 
     @Before("service()")
-    public void before(JoinPoint joinPoint){
+    public void before(JoinPoint joinPoint) {
         Signature signature = joinPoint.getSignature();
-        String method = signature.getDeclaringTypeName()+"."+signature.getName();
+        String method = signature.getDeclaringTypeName() + "." + signature.getName();
         log.info("-------------------------------");
         log.info("执行Service方法 : " + method);
         Object[] args = joinPoint.getArgs();
@@ -36,7 +36,8 @@ public class ServiceLogger {
         }
         log.info("-------------------------------");
     }
-    @AfterReturning(pointcut = "service()",returning = "result")
+
+    @AfterReturning(pointcut = "service()", returning = "result")
     public void afterReturn(Object result) {
         log.info("--------------------------");
         log.info("返回参数 : " + result);

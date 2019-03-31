@@ -10,11 +10,11 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class LoginException extends RuntimeException{
+public class LoginException extends RuntimeException {
 
     private Integer code;
 
-    public LoginException(LoginEnum loginEnum){
+    public LoginException(LoginEnum loginEnum) {
         super(loginEnum.getMessage());
         this.code = loginEnum.getCode();
     }

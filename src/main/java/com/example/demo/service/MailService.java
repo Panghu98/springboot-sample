@@ -13,14 +13,14 @@ import java.util.List;
 public interface MailService {
     /**
      * 测试
+     *
      * @param to
      * @param title
      * @param content
      */
-    void sendSimpleMail(String to,String title,String content);
+    void sendSimpleMail(String to, String title, String content);
 
     /**
-     *
      * @param to
      * @param title
      * @param content

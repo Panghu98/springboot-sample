@@ -21,7 +21,8 @@ public class FastJson2JsonRedisSerializer<T> implements RedisSerializer<T> {
     private Class<T> clazz;
 
     public FastJson2JsonRedisSerializer(Class<T> clazz) {
-        super(); this.clazz = clazz;
+        super();
+        this.clazz = clazz;
     }
 
     @Override
