@@ -1,6 +1,8 @@
 package com.example.demo.object;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
@@ -35,19 +37,29 @@ public class User implements Serializable {
     /**
      * 是否被序列化
      * 下述为是否被序反列化
-     *
+     *fastjson
      * @JSONField(deserialize = 布尔类型)
      */
     @JSONField(serialize = false)
     private String password;
 
+    /**
+     * jackson
+     */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer role;
 
     private String redisKey;
 
-    @JSONField(format = "yyyy-mm-dd hh:mm:ss")
+    /**
+     * jackson
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
+    /**
+     * fastjson
+     * */
     @JSONField(format = "yyyy-mm-dd hh:mm:ss")
     private Date updateTime;
 

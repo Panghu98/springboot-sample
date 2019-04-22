@@ -1,19 +1,22 @@
 package com.example.demo;
 
-import com.spring4all.swagger.EnableSwagger2Doc;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.annotation.EnableCaching;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
+ * @EnableAsync  开启异步任务
+ * @EnableScheduling  开启定时任务
  * @author panghu
  */
 @EnableConfigurationProperties
 @EnableCaching
-@EnableSwagger2Doc
+@EnableScheduling
+@EnableAsync
 @MapperScan("com.example.demo.mapper")
 @SpringBootApplication(scanBasePackages = "com.example")
 public class DemoApplication {
