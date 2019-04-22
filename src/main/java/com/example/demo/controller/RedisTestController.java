@@ -5,6 +5,7 @@ import com.example.demo.redis.RedisModelMap;
 import com.example.demo.redis.RedisUtil;
 import com.example.demo.redis.StateParameter;
 import com.example.demo.object.User;
+import com.example.demo.redis.key.ModelKey;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,7 @@ public class RedisTestController {
     @Autowired
     RedisUtil redisUtil;
 
+
     /**
      * @auther: zhangyingqi
      * @date: 17:26 2018/8/28
@@ -38,20 +40,27 @@ public class RedisTestController {
      */
     @RequestMapping(value = "/test")
     @ResponseBody
-    public ModelMap test() {
+    public ModelMap test(String key) {
         RedisModelMap redisModelMap = new RedisModelMap();
         try {
-            redisUtil.set("redisTemplate", "这是一条测试数据", 2);
-            String value = redisUtil.get("redisTemplate", 2).toString();
+            String value = redisUtil.get(key).toString();
             log.info("redisValue=" + value);
             log.info("读取redis成功");
             return redisModelMap.getModelMap(StateParameter.SUCCESS, value, "操作成功");
             //TODO  添加相关的数据库操作
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
             return redisModelMap.getModelMap(StateParameter.FAULT, null, "操作失败");
         }
     }
+
+    @RequestMapping(value = "/set")
+    @ResponseBody
+    public void set(String key,String value,long time) {
+        redisUtil.set(key, value,new ModelKey());
+        log.info("插入成功");
+    }
+
 
     @RequestMapping(value = "/setUser")
     @ResponseBody
@@ -59,11 +68,12 @@ public class RedisTestController {
         RedisModelMap redisModelMap = new RedisModelMap();
         try {
             User user = new User();
-            user.setName("隔壁老王");
+            user
+                    .setName("隔壁的泰山");
             user.setAge(28);
             user.setId(6666);
-            redisUtil.set("user", user, 2);
-            User res = (User) redisUtil.get("user", 2);
+            redisUtil.set("2016", user, new ModelKey());
+            User res = (User) redisUtil.get("2016");
             log.info("res=" + JSON.toJSONString(res));
             log.info("读取redis成功");
             return redisModelMap.getModelMap(StateParameter.SUCCESS, res, "操作成功");

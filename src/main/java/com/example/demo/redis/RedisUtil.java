@@ -1,9 +1,11 @@
 package com.example.demo.redis;
 
-import com.example.demo.redis.RedisTemplate;
+import com.example.demo.redis.key.KeyStrategy;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 
+import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -15,6 +17,11 @@ import java.util.concurrent.TimeUnit;
  * @ProjectName demo
  * @Description: TODO
  * @date 19-3-5 上午11:06
+ */
+
+/**
+ * 待解决的问题
+ * 这里使用redisTemplate可以将数据存入指定的数据库,但是只能获取到数据库1中的数据
  */
 public class RedisUtil {
     @Autowired
@@ -93,8 +100,8 @@ public class RedisUtil {
      * @param key 键
      * @return 值
      */
-    public Object get(String key, int indexdb) {
-        RedisTemplate.indexdb.set(indexdb);
+    public Object get(String key) {
+        RedisTemplate.indexdb.set(1);
         return key == null ? null : redisTemplate.opsForValue().get(key);
     }
 
@@ -105,9 +112,9 @@ public class RedisUtil {
      * @param value 值
      * @return true成功 false失败
      */
-    public boolean set(String key, Object value, int indexdb) {
+    public boolean set(String key, Object value) {
         try {
-            RedisTemplate.indexdb.set(indexdb);
+            RedisTemplate.indexdb.set(1);
             redisTemplate.opsForValue().set(key, value);
             return true;
         } catch (Exception e) {
@@ -122,15 +129,16 @@ public class RedisUtil {
      *
      * @param key   键
      * @param value 值
-     * @param time  时间(秒) time要大于0 如果time小于等于0 将设置无限期
+     * keyStrategy.getExpireSeconds()  时间(秒) time要大于0 如果time小于等于0 将设置无限期
      * @return true成功 false 失败
      */
-    public boolean set(String key, Object value, long time) {
+    public boolean set(String key, Object value, KeyStrategy keyStrategy) {
         try {
-            if (time > 0) {
-                redisTemplate.opsForValue().set(key, value, time, TimeUnit.SECONDS);
+            if (keyStrategy.getExpireSeconds() > 0) {
+                redisTemplate.opsForValue().set(keyStrategy.getPrefix()+key, value,
+                                                keyStrategy.getExpireSeconds(), TimeUnit.SECONDS);
             } else {
-                redisTemplate.opsForValue().set(key, value);
+                redisTemplate.opsForValue().set(keyStrategy.getPrefix()+key, value);
             }
             return true;
         } catch (Exception e) {
