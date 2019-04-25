@@ -4,7 +4,7 @@
 #### 相关的json框架介绍
 ![相关的json介绍](https://github.com/Panghu98/springboot-sample/blob/master/src/main/resources/static/png1.png)
 #### bean的格式
-* 未给email赋值
+<br>* 未给email赋值
 ![bean的格式](https://github.com/Panghu98/springboot-sample/blob/master/src/main/resources/static/png3.png)
 #### 返回给前台的json
 ![返回给前台的json](https://github.com/Panghu98/springboot-sample/blob/master/src/main/resources/static/json.png)
