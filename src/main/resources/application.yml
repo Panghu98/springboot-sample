@@ -8,7 +8,7 @@ spring:
   #    cache: false
   mail:
     host: smtp.qq.com
-    username: 792559738@qq.com
+    username: 7925`59738@qq.com
     password: fmafqfobckggbcia
     default-encoding: utf-8
     properties:
@@ -62,3 +62,8 @@ pagehelper:
 swagger:
   title: demo
   version: 1.0
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '* '

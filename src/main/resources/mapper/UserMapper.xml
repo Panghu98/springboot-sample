@@ -10,9 +10,12 @@
     <sql id="User_List">
         username,password,role,id
     </sql>
+    <insert id="addUser" parameterType="com.example.demo.object.User">
+        insert into Sys_User(id,username,password,role) values (#{user.id},#{user.username},#{user.password},#{user.role})
+    </insert>
     <update id="update" parameterType="com.example.demo.object.User">
         update Sys_User
-        <trim prefix="set">
+        <trim prefix="set">-
             <if test="user!=null">
                 username=#{user.username}
                 id=#{user.id}

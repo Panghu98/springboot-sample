@@ -77,7 +77,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/swagger**",
                         "/autoconfig",
                         "/test/**",
-                        "/redis/**"
+                        "/redis/**",
+                        "/actuator/**"
                 ).permitAll()
                 .antMatchers(
                         HttpMethod.POST,

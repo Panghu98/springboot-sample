@@ -1,9 +1,12 @@
 package com.example.demo.controller;
 
 import com.example.demo.domain.User;
+import com.example.demo.mapper.UserMapper;
 import com.example.demo.task.AsyncTask;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
@@ -15,8 +18,12 @@ import java.util.concurrent.Future;
  * @projectName demo
  * @date 19-4-22 下午3:22
  */
+@RequestMapping("/test")
 @RestController
 public class TestController {
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Autowired
     private AsyncTask asyncTask;
@@ -54,5 +61,13 @@ public class TestController {
      * 任务2耗时2000
      * 任务3耗时3000
      */
+
+
+
+    @GetMapping("/addUser")
+    public String addUser(com.example.demo.object.User user){
+        userMapper.addUser(user);
+        return "success";
+    }
 
 }

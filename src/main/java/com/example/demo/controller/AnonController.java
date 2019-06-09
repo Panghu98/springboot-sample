@@ -20,7 +20,7 @@ import java.util.Map;
  * @date 19-3-11 下午2:52
  */
 @RequestMapping(value = "/test")
-@Api(description = "用户登录接口")
+@Api(tags = "用户登录接口")
 @RestController
 public class AnonController {
 
