@@ -43,7 +43,7 @@ public class LoginServiceImpl {
     public Map login(String username, String password) {
         if (userMapper.selectByUsername(username) == null) {
             log.info("用户不存在");
-            Map<String, Object> map = new HashMap(10);
+            HashMap map = new HashMap(10);
             map.put("code", 0);
             map.put("msg", "用户不存在");
             return map;
